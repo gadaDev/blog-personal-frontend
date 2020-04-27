@@ -1,9 +1,13 @@
 <template>
-  <p>home</p>
+  <div class="home-header">
+    <header></header>
+  </div>
 </template>
 
 <script>
-export default {};
+export default {
+  components: {}
+};
 </script>
 
 <style>
