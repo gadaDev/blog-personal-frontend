@@ -1,11 +1,20 @@
 <template>
   <div class="header">
     <div class="top-header">
-      <router-link class="logo" to="/chat">
+      <!-- logo -->
+      <router-link class="logo" :class="triggerLogo" to="/chat">
         <img src="../../assets/icons/icon.svg" alt="logo" />
       </router-link>
+      <!-- icon search hide -->
+
       <!-- input search -->
-      <div class="form-input">
+      <div class="form-input" :style="styleInput" :class="triggerInput">
+        <div class="back-button">
+          <button>
+            <img src="../../assets/icons/back.svg" alt />
+          </button>
+        </div>
+        <!-- search form and button-submit -->
         <form action="#" method="get">
           <div class="wrapper-input">
             <input type="text" @click="clickInput" id="input-search" placeholder="Search" />
@@ -16,10 +25,13 @@
             </button>
           </div>
         </form>
+        <!-- dropdown -->
         <div v-if="formActive" class="form-input-dropdown"></div>
       </div>
+      <!-- end form input -->
+
       <!-- control -->
-      <control></control>
+      <control :class="triggerControl"></control>
     </div>
   </div>
 </template>
@@ -33,11 +45,26 @@ export default {
   data: () => {
     return {
       formActive: false,
-      userActive: true
+      userActive: true,
+      triggerControl: "EnableElement",
+      styleIconSearchHide: {},
+      styleInput: {},
+      triggerLogo: "EnableELement"
     };
   },
+  computed: {},
   methods: {
-    clickInput: function() {}
+    clickInput: function() {},
+    handleIconSearchHeader: function() {
+      this.triggerLogo = "DisableElement";
+      this.triggerControl = "DisableElement";
+      this.styleInput = {
+        display: "flex"
+      };
+      this.styleIconSearchHide = {
+        display: "none"
+      };
+    }
   }
 };
 </script>
@@ -47,6 +74,7 @@ export default {
   width: 100%;
   border-bottom: 1px solid rgba(187, 186, 186, 0.767);
   padding-bottom: 15px;
+  height: 70px;
 }
 .top-header {
   width: 90%;
@@ -106,5 +134,36 @@ export default {
 }
 .form-input form button svg {
   outline: none;
+}
+.back-button {
+  display: none;
+}
+
+.EnableElement {
+  display: flex;
+}
+.DisableElement {
+  display: none;
+}
+
+/* responsive */
+
+@media only screen and (max-width: 850px) {
+  .top-header {
+    width: 100%;
+    height: 100%;
+  }
+  .form-input {
+    display: none;
+    width: 100%;
+    height: 100%;
+  }
+  /* end */
+  .EnableElement {
+    display: flex;
+  }
+  .icon-search-header {
+    display: flex;
+  }
 }
 </style>

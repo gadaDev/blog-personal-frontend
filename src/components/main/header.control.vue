@@ -1,6 +1,9 @@
 <template>
   <div class="control">
     <div class="control-left">
+      <div class="icon-search-header" :style="styleIconSearchHide" @click="handleIconSearchHeader">
+        <img src="../../assets/icons/search-res.svg" alt="icon-search-hide" />
+      </div>
       <div class="control-left-item book">
         <router-link to="/book">
           <img src="../../assets/icons/book.svg" alt="icon-book" />
@@ -69,5 +72,14 @@ export default {};
   align-items: center;
   text-decoration: none;
   padding: 3px;
+}
+.icon-search-header {
+  display: none;
+}
+
+@media only screen and (max-width: 850px) {
+  .icon-search-header {
+    display: flex;
+  }
 }
 </style>
